@@ -6,7 +6,7 @@ const PostCreate = () => {
     const [title, setTitle] = useState("");
 
     const onSubmit = async (e) => {
-        e.preventDefault();
+        // e.preventDefault();
 
         await axios.post("http://localhost:4000/posts", {
             title,
@@ -18,7 +18,7 @@ const PostCreate = () => {
 
     return (
         <div>
-            <Form onSubmit={onSubmit}>
+            <Form onFinish={onSubmit}>
                 <Form.Item name="note" label="Title">
                     <Input
                         value={title}

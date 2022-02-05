@@ -1,5 +1,4 @@
 import React from "react";
-import PostCreate from "./PostCreate";
 import { Typography, Layout, Menu } from "antd";
 import {
     StarOutlined,
@@ -8,6 +7,8 @@ import {
     BankOutlined,
     HomeOutlined,
 } from "@ant-design/icons";
+import PostCreate from "./PostCreate";
+import PostList from "./PostList";
 
 import "./App.css";
 import Search from "antd/lib/input/Search";
@@ -68,6 +69,9 @@ const App = () => {
                         >
                             <Title level={2}>Create Post</Title>
                             <PostCreate />
+                            <hr />
+                            <Title level={2}>Posts</Title>
+                            <PostList />
                         </div>
                     </Content>
                     <Footer style={{ textAlign: "center" }}>
