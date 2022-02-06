@@ -12,12 +12,13 @@ import Search from "antd/lib/input/Search";
 const Menubar = () => {
     const { SubMenu } = Menu;
     const onSearch = (value) => console.log(value);
+
     return (
         <>
             <div className="logo">Todo Today</div>
             <Search
                 className="search-btn"
-                placeholder="input search text"
+                placeholder="search post"
                 allowClear
                 onSearch={onSearch}
             />
