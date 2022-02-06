@@ -8,6 +8,7 @@ import {
     CheckCircleOutlined,
     SyncOutlined,
     CloseCircleOutlined,
+    MinusCircleOutlined,
 } from "@ant-design/icons";
 import moment from "moment";
 
@@ -28,38 +29,6 @@ const CommentList = ({ comments }) => {
         setAction("disliked");
     };
 
-    const actions = [
-        <Tooltip key="comment-basic-like" title="Like">
-            <span onClick={like}>
-                {createElement(action === "liked" ? LikeFilled : LikeOutlined)}
-                <span className="comment-action">{likes}</span>
-            </span>
-        </Tooltip>,
-        <Tooltip key="comment-basic-dislike" title="Dislike">
-            <span onClick={dislike}>
-                {React.createElement(
-                    action === "disliked" ? DislikeFilled : DislikeOutlined
-                )}
-                <span className="comment-action">{dislikes}</span>
-            </span>
-        </Tooltip>,
-        comments.status === "approved" && (
-            <Tag icon={<CheckCircleOutlined />} color="success">
-                approved
-            </Tag>
-        ),
-        comments.status === "pending" && (
-            <Tag icon={<SyncOutlined />} color="processing">
-                pending
-            </Tag>
-        ),
-        comments.status === "rejected" && (
-            <Tag icon={<CloseCircleOutlined />} color="error">
-                rejected
-            </Tag>
-        ),
-    ];
-
     return (
         <>
             <List
@@ -69,7 +38,65 @@ const CommentList = ({ comments }) => {
                 renderItem={(comment) => (
                     <li>
                         <Comment
-                            actions={actions}
+                            actions={[
+                                <Tooltip key="comment-basic-like" title="Like">
+                                    <span onClick={like}>
+                                        {createElement(
+                                            action === "liked"
+                                                ? LikeFilled
+                                                : LikeOutlined
+                                        )}
+                                        <span className="comment-action">
+                                            {likes}
+                                        </span>
+                                    </span>
+                                </Tooltip>,
+                                <Tooltip
+                                    key="comment-basic-dislike"
+                                    title="Dislike"
+                                >
+                                    <span onClick={dislike}>
+                                        {React.createElement(
+                                            action === "disliked"
+                                                ? DislikeFilled
+                                                : DislikeOutlined
+                                        )}
+                                        <span className="comment-action">
+                                            {dislikes}
+                                        </span>
+                                    </span>
+                                </Tooltip>,
+                                <Tooltip key="status-approved" title="Status">
+                                    {comment.status === "approved" && (
+                                        <Tag
+                                            icon={<CheckCircleOutlined />}
+                                            color="success"
+                                        >
+                                            approved
+                                        </Tag>
+                                    )}
+                                </Tooltip>,
+                                <Tooltip key="status-pending" title="Status">
+                                    {comment.status === "pending" && (
+                                        <Tag
+                                            icon={<SyncOutlined />}
+                                            color="processing"
+                                        >
+                                            pending
+                                        </Tag>
+                                    )}
+                                </Tooltip>,
+                                <Tooltip key="status-rejected" title="Status">
+                                    {comment.status === "rejected" && (
+                                        <Tag
+                                            icon={<CloseCircleOutlined />}
+                                            color="error"
+                                        >
+                                            rejected
+                                        </Tag>
+                                    )}
+                                </Tooltip>,
+                            ]}
                             author={comment.id}
                             avatar={
                                 <Avatar
@@ -87,6 +114,9 @@ const CommentList = ({ comments }) => {
                                 </Tooltip>
                             }
                         />
+                        <Tag icon={<MinusCircleOutlined />} color="default">
+                            {comment.status}
+                        </Tag>
                     </li>
                 )}
             />
