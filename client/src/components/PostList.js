@@ -17,7 +17,7 @@ const PostList = () => {
     const [loading, setLoading] = useState(false);
 
     const fetchPosts = async () => {
-        const res = await axios.get("http://localhost:4000/posts");
+        const res = await axios.get("http://localhost:4002/posts");
 
         setPosts(res.data);
     };
@@ -28,11 +28,9 @@ const PostList = () => {
         setLoading(false);
     }, []);
 
-    console.log(posts);
-
     const menu = (
         <Menu>
-            <Menu.Item>
+            <Menu.Item key={1}>
                 <a
                     target="_blank"
                     rel="noopener noreferrer"
@@ -41,7 +39,7 @@ const PostList = () => {
                     1st menu item
                 </a>
             </Menu.Item>
-            <Menu.Item>
+            <Menu.Item key={2}>
                 <a
                     target="_blank"
                     rel="noopener noreferrer"
@@ -50,7 +48,7 @@ const PostList = () => {
                     2nd menu item
                 </a>
             </Menu.Item>
-            <Menu.Item>
+            <Menu.Item key={3}>
                 <a
                     target="_blank"
                     rel="noopener noreferrer"
@@ -86,7 +84,7 @@ const PostList = () => {
                 >
                     <Tag color="blue">{post.topic}</Tag>
                     <Meta title={post.title} description={post.content} />
-                    <CommentList postId={post.id} />
+                    <CommentList comments={post.comments} />
                     <CommentCreate postId={post.id} />
                 </Card>
             </Space>

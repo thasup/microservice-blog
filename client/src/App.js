@@ -1,34 +1,28 @@
 import React from "react";
-import { Layout } from "antd";
+import { Col, Layout, Row } from "antd";
 
 import "./App.css";
 
 import Menubar from "./screen/Menubar";
 import PostScreen from "./screen/PostScreen";
 import Footerbar from "./screen/Footerbar";
-import Headerbar from "./screen/Headerbar";
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Footer } = Layout;
 
 const App = () => {
     return (
         <>
-            <Layout style={{ minHeight: "100vh" }}>
-                <Sider theme="light">
+            <Row theme="light">
+                <Col span={5} className="layout-menu">
                     <Menubar />
-                </Sider>
-                <Layout className="site-layout">
-                    <Header theme="light" style={{ padding: 0 }}>
-                        <Headerbar />
-                    </Header>
-                    <Content style={{ margin: "0 16px" }}>
-                        <PostScreen />
-                    </Content>
+                </Col>
+                <Col flex="auto" className="layout-content">
+                    <PostScreen />
                     <Footer style={{ textAlign: "center" }}>
                         <Footerbar />
                     </Footer>
-                </Layout>
-            </Layout>
+                </Col>
+            </Row>
         </>
     );
 };

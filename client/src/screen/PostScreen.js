@@ -11,10 +11,10 @@ const PostScreen = () => {
             className="site-layout-background"
             style={{ padding: 24, minHeight: 360 }}
         >
-            <Title level={2}>Create Post</Title>
+            <Title level={2}>Add a task</Title>
             <PostCreate />
             <hr />
-            <Title level={2}>Posts</Title>
+            <Title level={2}>Tasks</Title>
             <PostList />
         </div>
     );

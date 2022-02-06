@@ -37,7 +37,7 @@ const PostCreate = () => {
                     <Input
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
-                        placeholder="Post Title"
+                        placeholder="Enter your title"
                         style={{ width: "300px" }}
                     />
                 </Form.Item>
@@ -45,7 +45,7 @@ const PostCreate = () => {
                     <Input.TextArea
                         value={content}
                         onChange={(e) => setContent(e.target.value)}
-                        placeholder="Post Content"
+                        placeholder="Enter your content"
                         style={{ width: "300px" }}
                     />
                 </Form.Item>

@@ -1,6 +1,11 @@
 @import "~antd/dist/antd.css";
 
-.ant-layout-header {
+.ant-row .layout-menu {
+    background: #fff;
+    z-index: 1;
+}
+
+.ant-row .layout-content {
     background: #f0f2f5;
 }
 
