@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Card, Space } from "antd";
-import { LinkOutlined, MessageOutlined, LikeOutlined } from "@ant-design/icons";
+import { Card, Space, Menu, Dropdown, Tag } from "antd";
+import {
+    SettingOutlined,
+    MessageOutlined,
+    LikeOutlined,
+} from "@ant-design/icons";
+
+import CommentCreate from "./CommentCreate";
+import CommentList from "./CommentList";
 
 const { Meta } = Card;
 
@@ -23,6 +30,38 @@ const PostList = () => {
 
     console.log(posts);
 
+    const menu = (
+        <Menu>
+            <Menu.Item>
+                <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://www.antgroup.com"
+                >
+                    1st menu item
+                </a>
+            </Menu.Item>
+            <Menu.Item>
+                <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://www.aliyun.com"
+                >
+                    2nd menu item
+                </a>
+            </Menu.Item>
+            <Menu.Item>
+                <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://www.luohanacademy.com"
+                >
+                    3rd menu item
+                </a>
+            </Menu.Item>
+        </Menu>
+    );
+
     const renderPosts = Object.values(posts).map((post) => {
         return (
             <Space direction="horizontal">
@@ -37,17 +76,18 @@ const PostList = () => {
                         />
                     }
                     actions={[
-                        <LinkOutlined key="file" />,
-                        <MessageOutlined key="comment" />,
                         <LikeOutlined key="like" />,
+                        <MessageOutlined key="comment" />,
+                        <Dropdown overlay={menu} placement="bottomLeft">
+                            <SettingOutlined key="setting" />
+                        </Dropdown>,
                     ]}
                     loading={loading}
                 >
-                    <Meta
-                        title={post.title}
-                        description="
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-                    />
+                    <Tag color="blue">{post.topic}</Tag>
+                    <Meta title={post.title} description={post.content} />
+                    <CommentList postId={post.id} />
+                    <CommentCreate postId={post.id} />
                 </Card>
             </Space>
         );

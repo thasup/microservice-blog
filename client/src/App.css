@@ -24,3 +24,15 @@ iframe {
     /* box-shadow: 1px 1px 3px slategray; */
     /* border-radius: 3px; */
 }
+
+.ant-card .ant-card-meta-description {
+    margin-bottom: 1.5rem;
+}
+
+.ant-card .ant-tag {
+    margin-bottom: 1rem;
+}
+
+.ant-card .ant-form {
+    margin-top: 1rem;
+}
