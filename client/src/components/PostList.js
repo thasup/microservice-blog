@@ -82,7 +82,8 @@ const PostList = () => {
                     ]}
                     loading={loading}
                 >
-                    <Tag color="blue">{post.topic}</Tag>
+                    {post.topic ? <Tag color="blue">{post.topic}</Tag> : null}
+
                     <Meta title={post.title} description={post.content} />
                     <CommentList comments={post.comments} />
                     <CommentCreate postId={post.id} />

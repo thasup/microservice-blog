@@ -12,8 +12,8 @@ const { Footer } = Layout;
 const App = () => {
     return (
         <>
-            <Row theme="light">
-                <Col span={5} className="layout-menu">
+            <Row theme="light" wrap={false}>
+                <Col className="layout-menu">
                     <Menubar />
                 </Col>
                 <Col flex="auto" className="layout-content">
