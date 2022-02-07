@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Button, Form, Input } from "antd";
 
-const PostCreate = () => {
+const PostCreate = ({ setReload }) => {
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
     const [topic, setTopic] = useState("");
@@ -19,7 +19,8 @@ const PostCreate = () => {
 
         setTitle("");
         setContent("");
-        setContent("");
+        setTopic("");
+        setReload(true);
     };
 
     return (

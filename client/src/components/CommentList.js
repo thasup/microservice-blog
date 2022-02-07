@@ -8,7 +8,6 @@ import {
     CheckCircleOutlined,
     SyncOutlined,
     CloseCircleOutlined,
-    MinusCircleOutlined,
 } from "@ant-design/icons";
 import moment from "moment";
 
@@ -106,17 +105,18 @@ const CommentList = ({ comments }) => {
                             content={comment.content}
                             datetime={
                                 <Tooltip
-                                    title={moment().format(
-                                        "YYYY-MM-DD HH:mm:ss"
-                                    )}
+                                    title={moment().format("DD-MMM-YYYY HH:mm")}
                                 >
-                                    <span>{moment().fromNow()}</span>
+                                    <span>
+                                        {moment().format("X")
+                                            ? moment().fromNow("m")
+                                            : moment().format(
+                                                  "YYYY-MM-DD HH:mm:ss"
+                                              )}
+                                    </span>
                                 </Tooltip>
                             }
                         />
-                        <Tag icon={<MinusCircleOutlined />} color="default">
-                            {comment.status}
-                        </Tag>
                     </li>
                 )}
             />

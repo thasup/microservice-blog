@@ -1,20 +1,16 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Card, Space, Menu, Dropdown, Tag } from "antd";
-import {
-    SettingOutlined,
-    MessageOutlined,
-    LikeOutlined,
-} from "@ant-design/icons";
+import { Card, Space, Menu, Tag } from "antd";
 
 import CommentCreate from "./CommentCreate";
 import CommentList from "./CommentList";
 
 const { Meta } = Card;
 
-const PostList = () => {
+const PostList = ({ reload, setReload }) => {
     const [posts, setPosts] = useState({});
     const [loading, setLoading] = useState(false);
+    const [commentReload, setCommentReload] = useState(false);
 
     const fetchPosts = async () => {
         const res = await axios.get("http://localhost:4002/posts");
@@ -26,39 +22,12 @@ const PostList = () => {
         setLoading(true);
         fetchPosts();
         setLoading(false);
-    }, []);
+        setReload(false);
+        setCommentReload(false);
 
-    const menu = (
-        <Menu>
-            <Menu.Item key={1}>
-                <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href="https://www.antgroup.com"
-                >
-                    1st menu item
-                </a>
-            </Menu.Item>
-            <Menu.Item key={2}>
-                <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href="https://www.aliyun.com"
-                >
-                    2nd menu item
-                </a>
-            </Menu.Item>
-            <Menu.Item key={3}>
-                <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href="https://www.luohanacademy.com"
-                >
-                    3rd menu item
-                </a>
-            </Menu.Item>
-        </Menu>
-    );
+        console.log(posts);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [reload, commentReload]);
 
     const renderPosts = Object.values(posts).map((post) => {
         return (
@@ -73,20 +42,16 @@ const PostList = () => {
                             src="https://placekitten.com/g/600/400"
                         />
                     }
-                    actions={[
-                        <LikeOutlined key="like" />,
-                        <MessageOutlined key="comment" />,
-                        <Dropdown overlay={menu} placement="bottomLeft">
-                            <SettingOutlined key="setting" />
-                        </Dropdown>,
-                    ]}
                     loading={loading}
                 >
                     {post.topic ? <Tag color="blue">{post.topic}</Tag> : null}
 
                     <Meta title={post.title} description={post.content} />
                     <CommentList comments={post.comments} />
-                    <CommentCreate postId={post.id} />
+                    <CommentCreate
+                        postId={post.id}
+                        setCommentReload={setCommentReload}
+                    />
                 </Card>
             </Space>
         );

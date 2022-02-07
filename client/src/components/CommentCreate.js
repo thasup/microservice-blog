@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Form, Input, Button } from "antd";
 
-const CommentCreate = ({ postId }) => {
+const CommentCreate = ({ postId, setCommentReload }) => {
     const [content, setContent] = useState("");
 
     const onComment = async (e) => {
@@ -14,6 +14,7 @@ const CommentCreate = ({ postId }) => {
         console.log(content);
 
         setContent("");
+        setCommentReload(true);
     };
 
     return (
