@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Card, Space, Menu, Tag } from "antd";
+import { Card, Space, Tag } from "antd";
 
 import CommentCreate from "./CommentCreate";
 import CommentList from "./CommentList";
@@ -13,7 +13,7 @@ const PostList = ({ reload, setReload }) => {
     const [commentReload, setCommentReload] = useState(false);
 
     const fetchPosts = async () => {
-        const res = await axios.get("http://localhost:4002/posts");
+        const res = await axios.get("http://posts.com/posts");
 
         setPosts(res.data);
     };
