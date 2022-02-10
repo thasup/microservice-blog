@@ -5,13 +5,10 @@ import { Form, Input, Button } from "antd";
 const CommentCreate = ({ postId, setCommentReload }) => {
     const [content, setContent] = useState("");
 
-    const onComment = async (e) => {
-        // e.preventDefault();
-
+    const onComment = async () => {
         await axios.post(`http://posts.com/posts/${postId}/comments`, {
             content,
         });
-        console.log(content);
 
         setContent("");
         setCommentReload(true);

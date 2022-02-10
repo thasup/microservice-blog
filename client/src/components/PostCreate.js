@@ -7,19 +7,17 @@ const PostCreate = ({ setReload }) => {
     const [content, setContent] = useState("");
     const [topic, setTopic] = useState("");
 
-    const onSubmit = async (e) => {
-        // e.preventDefault();
-
+    const onSubmit = async () => {
         await axios.post("http://posts.com/posts/create", {
             title,
             content,
             topic,
         });
-        console.log({ title, content, topic });
 
         setTitle("");
         setContent("");
         setTopic("");
+        console.log({ title, content, topic });
         setReload(true);
     };
 
